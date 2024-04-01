@@ -31,3 +31,13 @@
 #     print(f'Element found at index {index}')
 # else:
 #     print('Element not found in the array')
+
+
+
+# # find_max
+# def find_max(data):
+#     max = data[0]
+#     for val in data:
+#         if val > max:
+#             max = val
+#     return max
