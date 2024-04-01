@@ -66,3 +66,18 @@
 #     return arr
 
 
+# compact array
+import sys
+import array
+
+print(sys.getsizeof(8))
+a = 8
+print(sys.getsizeof(a))
+
+primes = array.array('i', [2,3,5,7,11])
+print(type(primes))
+print(primes)
+
+c = "Dog"
+print(c)
+print(sys.getsizeof(None))
