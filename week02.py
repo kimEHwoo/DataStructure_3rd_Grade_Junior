@@ -41,3 +41,28 @@
 #         if val > max:
 #             max = val
 #     return max
+
+
+# # O(1)
+# def get_first_element(arr):
+#     return arr[0] if arr else None #삼항 조건 연산자
+# # 만약 arr이 비어있지 않다면 arr[0]을 반환, 그렇지 않으면 None
+
+# # O(n)
+# def find_element(arr, target):
+#     for i in range(len(arr)):
+#         if arr[i] == target:
+#             return i
+#     return -1
+
+
+# # Quadratic Time Complexity O(n^2)
+# def bubble_sort(arr):
+#     n = len(arr)
+#     for i in range(n):
+#         for j in range(n-i-1):
+#             if arr[j]>arr[j+1]:
+#                 arr[j],arr[j+1]=arr[j+1],arr[j]
+#     return arr
+
+
