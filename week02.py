@@ -79,30 +79,32 @@
 # print(primes)
 
 # 'b': 부호 있는 정수 (signed char)
-
 # array.array('b', [-1, 0, 1, 2, 3])
 # 'B': 부호 없는 정수 (unsigned char)
-
 # array.array('B', [0, 1, 2, 3, 4])
 # 'h': 부호 있는 정수 (signed short)
-
 # array.array('h', [-32768, 0, 32767])
 # 'H': 부호 없는 정수 (unsigned short)
-
 # array.array('H', [0, 1, 2, 3, 4, 65535])
 # 'i': 부호 있는 정수 (signed int)
-
 # array.array('i', [-2147483648, 0, 2147483647])
 # 'I': 부호 없는 정수 (unsigned int)
-
 # array.array('I', [0, 1, 2, 3, 4, 4294967295])
 # 'f': 부동 소수점 수 (float)
-
 # array.array('f', [0.1, 0.2, 0.3, 0.4, 0.5])
 # 'd': 부동 소수점 수 (double)
-
 # array.array('d', [0.1, 0.2, 0.3, 0.4, 0.5])
 
 # c = "Dog"
 # print(c)
 # print(sys.getsizeof(None))
+
+
+#analyzing a dynamic array
+import sys
+data = []
+for k in range (27):
+    a = len(data)
+    b = sys.getsizeof(data)
+    print('Length: {0:3d}; Size in bytes: {1:4d}'.format(a,b))
+    data.append(None)
