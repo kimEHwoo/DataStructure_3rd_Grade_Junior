@@ -111,82 +111,93 @@
 
 
 
-# Implementing a dynamic array
-import ctypes
-class DynamicArray:
-  ''' A dynamic array class akin to a simplified Python list '''
-  def __init__(self):
-    ''' create an empty array '''
-    self._n = 0                                 # count actual elements
-    self._capacity = 1                          # default array capacity
-    self._A = self._make_array(self._capacity)  # low-level array
+# # Implementing a dynamic array
+# import ctypes
+# class DynamicArray:
+#   ''' A dynamic array class akin to a simplified Python list '''
+#   def __init__(self):
+#     ''' create an empty array '''
+#     self._n = 0                                 # count actual elements
+#     self._capacity = 1                          # default array capacity
+#     self._A = self._make_array(self._capacity)  # low-level array
 
-  def __len__(self):
-    ''' return number of elements stored in the array'''
-    return self._n
+#   def __len__(self):
+#     ''' return number of elements stored in the array'''
+#     return self._n
 
-  def __getitem__(self, k):
-    ''' return element at index k '''
-    if not 0 <= k < self._n:
-      raise IndexError('invalid index')
-    return self._A[k]
+#   def __getitem__(self, k):
+#     ''' return element at index k '''
+#     if not 0 <= k < self._n:
+#       raise IndexError('invalid index')
+#     return self._A[k]
 
-  def append(self, obj):
-    ''' Add object to the end of the array'''
-    if self._n == self._capacity:  # no enough room
-      self._resize(2*self._capacity) # so double the capacity
-    self._A[self._n] = obj
-    self._n += 1
+#   def append(self, obj):
+#     ''' Add object to the end of the array'''
+#     if self._n == self._capacity:  # no enough room
+#       self._resize(2*self._capacity) # so double the capacity
+#     self._A[self._n] = obj
+#     self._n += 1
 
-  def _resize(self, c):
-    ''' Resize the internal array to capacity c'''
-    B = self._make_array(c)       # new (bigger) array
-    for k in range(self._n):
-      B[k] = self._A[k]           # copy data from old array into new array
-    self._A = B                   # use the bigger array
-    self._capacity = c
-
-
-  def _make_array(self, c):    # nonpublic utility
-    ''' Return new array with capacity c'''
-    return (c * ctypes.py_object)()
+#   def _resize(self, c):
+#     ''' Resize the internal array to capacity c'''
+#     B = self._make_array(c)       # new (bigger) array
+#     for k in range(self._n):
+#       B[k] = self._A[k]           # copy data from old array into new array
+#     self._A = B                   # use the bigger array
+#     self._capacity = c
 
 
-  def insert(self, k, value):
-    '''
-    Insert value at index k, shifting subsequent values rightward
-    For simplicity, we assume 0 <= k <= n
-    '''
-    if not 0 <= k <= self._n:
-      raise ValueError("k must lie between 0 and n.")
+#   def _make_array(self, c):    # nonpublic utility
+#     ''' Return new array with capacity c'''
+#     return (c * ctypes.py_object)()
 
-    if self._n == self._capacity:
-      self._resize(2*self._capacity)
-    for j in range(self._n, k,-1):  # shift rightmost first
-      self._A[j] = self._A[j-1]
-    self._A[k] = value
-    self._n += 1
 
-  def remove(self, value):
-    '''
-    Remove first occurrence of value (or raise ValueError)
-    note: We do not consider shrinking of dynamic array in
-    this  version
-    '''
-    for k in range(self._n):
-      if self._A[k] == value: # found a match
-        for j in range(k, self._n-1): # shift others to fill gap
-          self._A[j] = self._A[j+1]
-        self._A[self._n-1] = None   # help garbage collection
-        self._n -= 1 # We have now one less item
-        return       # exit if match found
-    raise ValueError('value not found') #only reached if no match
+#   def insert(self, k, value):
+#     '''
+#     Insert value at index k, shifting subsequent values rightward
+#     For simplicity, we assume 0 <= k <= n
+#     '''
+#     if not 0 <= k <= self._n:
+#       raise ValueError("k must lie between 0 and n.")
 
-  def __str__(self):
-    '''
-    Getting a string representation of the array
-    '''
-    string = str()
-    for i in range(0, self._n):
-      string = string + str(self._A[i]) +', '
-    return '< ' + string + ' >'
+#     if self._n == self._capacity:
+#       self._resize(2*self._capacity)
+#     for j in range(self._n, k,-1):  # shift rightmost first
+#       self._A[j] = self._A[j-1]
+#     self._A[k] = value
+#     self._n += 1
+
+#   def remove(self, value):
+#     '''
+#     Remove first occurrence of value (or raise ValueError)
+#     note: We do not consider shrinking of dynamic array in
+#     this  version
+#     '''
+#     for k in range(self._n):
+#       if self._A[k] == value: # found a match
+#         for j in range(k, self._n-1): # shift others to fill gap
+#           self._A[j] = self._A[j+1]
+#         self._A[self._n-1] = None   # help garbage collection
+#         self._n -= 1 # We have now one less item
+#         return       # exit if match found
+#     raise ValueError('value not found') #only reached if no match
+
+#   def __str__(self):
+#     '''
+#     Getting a string representation of the array
+#     '''
+#     string = str()
+#     for i in range(0, self._n):
+#       string = string + str(self._A[i]) +', '
+#     return '< ' + string + ' >'
+
+
+import timeit
+
+def append_test():
+    lst = []
+    for i in range(1000000):
+        lst.append(i)
+
+time_taken = timeit.timeit(append_test, number = 1)
+print(f"Time taken to append 1,000,000 items: {time_taken} seconds")
