@@ -192,12 +192,115 @@
 #     return '< ' + string + ' >'
 
 
-import timeit
 
-def append_test():
-    lst = []
-    for i in range(1000000):
-        lst.append(i)
+# # timeit_append
+# import timeit
 
-time_taken = timeit.timeit(append_test, number = 1)
-print(f"Time taken to append 1,000,000 items: {time_taken} seconds")
+# def append_test():
+#     lst = []
+#     for i in range(1000000):
+#         lst.append(i)
+
+# time_taken = timeit.timeit(append_test, number = 1)
+# print(f"Time taken to append 1,000,000 items: {time_taken} seconds")
+
+
+
+# # Amortized Behaviour
+# # Append method
+# from time import time
+# def compute_average(n):
+#     data = []
+#     start = time()
+#     for k in range(n):
+#         data.append(None)
+#     end = time()
+#     return (end-start)/n
+# print("Average time per second = {}".format(compute_average(100)))
+# print("Average time per operation={}".format(compute_average(1000)))
+# print("Average time per operation={}".format(compute_average(10000)))
+# print("Average time per operation={}".format(compute_average(100000)))
+# print("Average time per operation={}".format(compute_average(1000000)))
+# print("Average time per operation={}".format(compute_average(100000000)))
+
+# B = DynamicArray()
+# B.append(1)
+# B.append(5)
+# B.append(7)
+# print("Array Length: {}".format(len(B)))
+# print(B)
+# B.insert(2, 10)
+# print(B)
+# print("Array Length: {}".format(len(B)))
+# B.insert(3, -10)
+# print(B)
+      
+
+
+# # time for Inserting element
+# from time import time
+
+# def compute_average_insert1(n):
+#     '''insert element at the beginning of the list'''
+#     data = []
+#     start = time()
+#     for k in range(n):
+#         data.insert(0, None)
+#     end = time()
+#     return (end-start)/k
+
+# def compute_average_insert2(n):
+#     '''insert element at the half of the list'''
+#     data = []
+#     start = time()
+#     for k in range(n):
+#         data.insert(n//2, None)
+#     end = time()
+#     return (end-start)/k
+
+# def compute_average_insert3(n):
+#     '''insert element at the end of the list'''
+#     data = []
+#     start = time()
+#     for k in range(n):
+#         data.insert(n, None)
+#     end = time()
+#     return (end-start)/k
+
+# print("Average time per operation={}".format(compute_average_insert1(100)))
+# print("Average time per operation={}".format(compute_average_insert2(1000)))
+# print("Average time per operation={}".format(compute_average_insert3(10000)))
+# print("Average time per operation={}".format(compute_average_insert1(100000)))
+# print("Average time per operation={}".format(compute_average_insert2(1000000)))
+
+
+
+# C = DynamicArray()
+# C.append(1)
+# C.append(5)
+# C.append(7)
+# print(C)
+# print("Array Length:{}".format(len(C)))
+# C.remove(5)
+# print(C)
+# print("New Array Length:{}".format(len(C)))
+
+
+# import time
+
+# n = 100000
+# start_time = time.time()
+# squares = [k * k for k in range(1, n + 1)]
+# end_time = time.time()
+# elapsed_time = end_time - start_time
+# print(f"소요 시간: {elapsed_time:.7f} 초")
+
+# st = time.time()
+# document = 'Datastr12345uctures'
+# letters= ''
+# for c in document:
+#     if c.isalpha():
+#         letters +=c
+# en = time.time()
+# print(f"time to take {en-st:0.7}")
+# print(letters)
